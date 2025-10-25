@@ -1,1 +1,4 @@
 protobuf==3.18.3
+pyserial>=3.5
+cobs>=1.2.2
+requests>=2.25.0

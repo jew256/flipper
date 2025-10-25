@@ -42,12 +42,17 @@ BaseSupervisorTask baseSupervisorTask(splitflapTask, serialTask, 0);
 
 #if MQTT
 #include "mqtt_task.h"
-MQTTTask mqttTask(splitflapTask, displayTask, serialTask, 0);
+MQTTTask mqttTask(splitflapTask, serialTask, 0);
 #endif
 
 #if HTTP
 #include "http_task.h"
 HTTPTask httpTask(splitflapTask, displayTask, serialTask, 0);
+#endif
+
+#if WEB_SERVER
+#include "web_server_task.h"
+WebServerTask webServerTask(splitflapTask, serialTask, 0, WEB_SERVER_PORT);
 #endif
 
 void setup() {
@@ -62,7 +67,7 @@ void setup() {
   if (loaded) {
     PB_PersistentConfiguration saved = config.get();
     uint16_t offsets[NUM_MODULES] = {};
-    for (uint8_t i = 0; i < min(saved.module_offset_steps_count, (pb_size_t)NUM_MODULES); i++) {
+    for (uint8_t i = 0; i < (saved.module_offset_steps_count < NUM_MODULES ? saved.module_offset_steps_count : NUM_MODULES); i++) {
       offsets[i] = saved.module_offset_steps[i];
     }
     splitflapTask.restoreAllOffsets(offsets);
@@ -78,6 +83,10 @@ void setup() {
 
   #if HTTP
   httpTask.begin();
+  #endif
+
+  #if WEB_SERVER
+  webServerTask.begin();
   #endif
 
   #ifdef CHAINLINK_BASE

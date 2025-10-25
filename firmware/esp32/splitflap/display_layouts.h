@@ -18,7 +18,7 @@
 #include <stdint.h>
 
 // Customize these settings and select a layout algorithm at the bottom if you have a different arrangement of modules:
-#define DISPLAY_COLUMNS (NUM_MODULES)
+#define DISPLAY_COLUMNS 6
 
 
 // EXAMPLE LAYOUT ALGORITHMS:
