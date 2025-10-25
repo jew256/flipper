@@ -556,13 +556,13 @@ main {
 .toast {
     position: fixed;
     top: 20px;
-    left: 20px;
+    right: 20px;
     background: #333;
     color: white;
     padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transform: translateX(-400px);
+    transform: translateX(400px);
     transition: transform 0.3s ease;
     z-index: 1000;
 }
@@ -572,7 +572,7 @@ main {
 }
 
 .toast.success {
-    background: #f7b731;
+    background: #6aaa64;
 }
 
 .toast.error {
@@ -662,7 +662,7 @@ main {
     <!-- History Sidebar -->
     <button class="history-toggle" id="historyToggle" title="Toggle History"></button>
     
-    <div class="history-sidebar closed" id="historySidebar">
+    <div class="history-sidebar" id="historySidebar">
         <div class="history-header">
             <div class="history-title">Display Info</div>
             <button class="history-close" id="historyClose">×</button>
